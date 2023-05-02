@@ -25,11 +25,11 @@ postRouter.get("/" , async(req,res)=>{
 })
 
 
-postRouter.patch("/update/:noteID" , async(req,res)=>{
+postRouter.patch("/update/:postID" , async(req,res)=>{
     const {postID} = req.params;
     const post = await PostModel.findOne({_id : postID })
     try {
-        if(req.body.postID == post.authorID){
+        if(req.body.postID == post.postID){
             await PostModel.findByIdAndUpdate({_id : postID} , req.body)
             res.status(200).send({"msg" : `The note with id: ${noteID} is updated`})
         }else{
@@ -42,11 +42,11 @@ postRouter.patch("/update/:noteID" , async(req,res)=>{
 })
 
 
-postRouter.delete("/update/:noteID" , async(req,res)=>{
+postRouter.delete("/delete/:postID" , async(req,res)=>{
     const {postID} = req.params;
     const post = await PostModel.findOne({_id : postID })
     try {
-        if(req.body.postID == post.authorID){
+        if(req.body.postID == post.postID){
             await PostModel.findByIdAndDelete({_id : postID} , req.body)
             res.status(200).send({"msg" : `The note with id: ${noteID} is deleted`})
         }else{
