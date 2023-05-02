@@ -29,9 +29,9 @@ postRouter.patch("/update/:postID" , async(req,res)=>{
     const {postID} = req.params;
     const post = await PostModel.findOne({_id : postID })
     try {
-        if(req.body.postID == post.postID){
+        if(req.body.postsID == post.postsID){
             await PostModel.findByIdAndUpdate({_id : postID} , req.body)
-            res.status(200).send({"msg" : `The note with id: ${noteID} is updated`})
+            res.status(200).send({"msg" : `The post with id: ${postID} is updated`})
         }else{
             res.status(400).send({"err" : "you are not authorized to update"})
         }
@@ -46,9 +46,9 @@ postRouter.delete("/delete/:postID" , async(req,res)=>{
     const {postID} = req.params;
     const post = await PostModel.findOne({_id : postID })
     try {
-        if(req.body.postID == post.postID){
+        if(req.body.postsID == post.postsID){
             await PostModel.findByIdAndDelete({_id : postID} , req.body)
-            res.status(200).send({"msg" : `The note with id: ${noteID} is deleted`})
+            res.status(200).send({"msg" : `The note with id: ${postID} is deleted`})
         }else{
             res.status(400).send({"err" : "you are not authorized to delete"})
         }

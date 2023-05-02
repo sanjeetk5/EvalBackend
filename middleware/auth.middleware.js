@@ -7,7 +7,7 @@ const auth = (req,res,next) => {
             const decode = jwt.verify(token.split(" ")[1] , "ready")
 
             if(decode){
-                req.body.postID = decode.postID;
+                req.body.postsID = decode.postsID;
                 next()
             }else{
                 res.status(400).send({"err" : "Invalid Token"})
